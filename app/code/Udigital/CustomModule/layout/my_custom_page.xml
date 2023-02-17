@@ -1,0 +1,7 @@
+<referenceContainer name="content">
+	<block class="Magento\Framework\View\Element\Template" name="my_custom_page" template="Magento_Theme::my_custom_page.phtml">
+		<arguments>
+			<argument name="configProvider" xsi:type="object">Magento\Search\ViewModel\ConfigProvider</argument>
+		</arguments>
+	</block>
+</referenceContainer>
