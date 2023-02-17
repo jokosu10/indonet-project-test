@@ -1,1 +1,64 @@
 <h2>Welcome to Mageplaza.com</h2>
+
+<?php
+$helper = $this->helper(\Magento\Search\Helper\Data::class);
+$configProvider = $block->getData('configProvider');
+?>
+
+<?php /*
+<form class="form" action="" method="get">
+    <div class="field search">
+        <label class="label" for="search"><?php echo __('Search Products') ?></label>
+        <div class="control">
+            <input type="text" id="search" name="q" placeholder="<?php echo __('Search Products') ?>" class="input-text" />
+        </div>
+    </div>
+    <div class="actions">
+        <button type="submit" title="<?php echo __('Search') ?>" class="action search">
+            <span><?php echo __('Search') ?></span>
+        </button>
+    </div>
+</form>
+*/?>
+
+<form class="form minisearch" id="search_mini_form"
+      action="<?= $block->escapeUrl($helper->getResultUrl()) ?>" method="get">
+    <div class="field search">
+        <label class="label" for="search" data-role="minisearch-label">
+            <span><?= $block->escapeHtml(__('Search')) ?></span>
+        </label>
+        <div class="control">
+            <input id="search"
+                    <?php if ($configProvider->isSuggestionsAllowed()):?>
+                       data-mage-init='{"quickSearch":{
+                            "formSelector":"#search_mini_form",
+                            "url":"<?= $block->escapeUrl($helper->getSuggestUrl())?>",
+                            "destinationSelector":"#search_autocomplete",
+                            "minSearchLength":"<?= $block->escapeHtml($helper->getMinQueryLength()) ?>"}
+                       }'
+                    <?php endif;?>
+                   type="text"
+                   name="<?= $block->escapeHtmlAttr($helper->getQueryParamName()) ?>"
+                   value="<?= /* @noEscape */ $helper->getEscapedQueryText() ?>"
+                   placeholder="<?= $block->escapeHtmlAttr(__('Search entire store here...')) ?>"
+                   class="input-text"
+                   maxlength="<?= $block->escapeHtmlAttr($helper->getMaxQueryLength()) ?>"
+                   role="combobox"
+                   aria-haspopup="false"
+                   aria-autocomplete="both"
+                   autocomplete="off"
+                   aria-expanded="false"/>
+            <div id="search_autocomplete" class="search-autocomplete"></div>
+            <?= $block->getChildHtml() ?>
+        </div>
+    </div>
+    <div class="actions">
+        <button type="submit"
+            title="<?= $block->escapeHtmlAttr(__('Search')) ?>"
+            class="action search"
+            aria-label="Search"
+        >
+            <span><?= $block->escapeHtml(__('Search')) ?></span>
+        </button>
+    </div>
+</form>
