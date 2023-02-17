@@ -1,0 +1,13 @@
+<form class="form" action="<?php echo $block->getUrl('catalogsearch/result'); ?>" method="get">
+    <div class="field search">
+        <label class="label" for="search"><?php echo __('Search Products') ?></label>
+        <div class="control">
+            <input type="text" id="search" name="q" placeholder="<?php echo __('Search Products') ?>" class="input-text" />
+        </div>
+    </div>
+    <div class="actions">
+        <button type="submit" title="<?php echo __('Search') ?>" class="action search">
+            <span><?php echo __('Search') ?></span>
+        </button>
+    </div>
+</form>

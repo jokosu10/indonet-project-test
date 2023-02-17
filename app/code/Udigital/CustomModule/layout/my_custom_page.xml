@@ -1,0 +1,3 @@
+<referenceContainer name="content">
+	<block class="Magento\Framework\View\Element\Template" name="my_custom_page" template="Magento_Theme::my_custom_page.phtml" />
+</referenceContainer>
